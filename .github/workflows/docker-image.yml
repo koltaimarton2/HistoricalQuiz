@@ -13,6 +13,9 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    permissions: 
+      packages: write
+      contents: read
     steps:
     - uses: actions/checkout@v4
     - name: Docker Login
@@ -20,7 +23,7 @@ jobs:
       with:
         registry: ghcr.io
         username: koltaimarton2
-        password: ${{ secrets.GHCR_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the Docker images
       run: | 
         VERSION=$(date +%s)
